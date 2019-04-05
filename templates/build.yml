@@ -3,11 +3,16 @@ parameters:
 
 steps:
 - task: DotNetCoreCLI@2
+<<<<<<< HEAD
   displayName: 'Build the project - ${{ parameters.buildConfiguration }}'
+=======
+  displayName: 'dotnet build ${{ parameters.buildConfiguration }}'
+>>>>>>> Support build configurations
   inputs:
     command: 'build'
     arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }}'
     projects: '**/*.csproj'
+<<<<<<< HEAD
 
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - ${{ parameters.buildConfiguration }}'
@@ -17,3 +22,14 @@ steps:
     publishWebProjects: false
     arguments: '--no-build --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.BuildConfiguration }}'
     zipAfterPublish: true
+=======
+    
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish ${{ parameters.buildConfiguration }}'
+  inputs:
+    command: 'publish'
+    projects: '**/*.csproj'
+    publishWebProjects: true
+    arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.BuildConfiguration }}'
+    zipAfterPublish: true
+>>>>>>> Support build configurations
